@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Alert from "../../Components/layout/Alert";
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -115,9 +117,12 @@ const RegisterPresenter = ({ handleSubmit, handleChange, ...formData }) => {
 
           <Submit type="submit" value="등록" />
         </Form>
+        <Alert />
       </JoinBox>
     </Container>
   );
 };
+
+RegisterPresenter.propTypes = {};
 
 export default RegisterPresenter;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import RegisterPresenter from "./registerPresenter";
-import axios from "axios";
+import RegisterPresenter from "./RegisterPresenter";
+import { useSelector, useDispatch } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 
 const RegisterContainer = () => {
   const [formData, setFormData] = useState({
@@ -9,29 +11,16 @@ const RegisterContainer = () => {
     password: "",
     password2: ""
   });
+  const Selector = useSelector(state => state, []);
+  console.log(Selector);
+  const dispatch = useDispatch();
   const { name, email, password, password2 } = formData;
   const handleSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("비밀번호가 다릅니다.");
+      dispatch(setAlert("패스워드가 틀렸습니다.", "danger"));
     } else {
-      const newUser = {
-        name,
-        email,
-        password
-      };
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        };
-        const body = JSON.stringify(newUser);
-        const res = await axios.post("api/users/register", body, config);
-        console.log(res.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
+      dispatch(register({ name, email, password }));
     }
   };
   const handleChange = e => {

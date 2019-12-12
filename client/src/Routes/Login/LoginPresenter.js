@@ -64,7 +64,7 @@ const Submit = styled.input`
 const Signup = styled(Link)`
   width: 70px;
   height: 30px;
-
+  cursor: pointer;
   display: flex;
   align-items: center;
 `;
@@ -72,26 +72,36 @@ const Feedback = styled.div`
   display: flex !important;
   align-items: center;
 `;
-const LoginPresenter = () => {
+const LoginPresenter = ({ handleSubmit, handleChange, ...formData }) => {
   return (
     <Container>
       <LoginBox>
         <Hbox>
           <Hlink to="/">SELF</Hlink>
         </Hbox>
-        <Form>
+        <Form onSubmit={e => handleSubmit(e)}>
           <div>
-            <Email type="email" name="email" placeholder="E-mail" id="email" />
+            <Email
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              value={formData.email}
+              onChange={e => handleChange(e)}
+              required
+            />
           </div>
           <div>
             <Password
               type="password"
               name="password"
               placeholder="PASSWORD"
-              id="password"
+              value={formData.password}
+              onChange={e => handleChange(e)}
+              minLength="6"
+              required
             />
           </div>
-          <Submit type="submit" value="로그인" />
+          <Submit type="submit" value="로그인" onClick={e => handleSubmit(e)} />
           <Signup to="/register">회원등록</Signup>
         </Form>
       </LoginBox>
