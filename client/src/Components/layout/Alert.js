@@ -6,8 +6,8 @@ const Alert = () => {
   console.log(alerts);
   return (
     <>
-      {alerts &&
-        2 > alerts.length > 0 &&
+      {alerts !== null &&
+        alerts.length > 0 &&
         alerts.map(alert => <div key={alert.id}>{alert.msg}</div>)}
     </>
   );
