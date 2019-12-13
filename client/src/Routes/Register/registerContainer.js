@@ -11,8 +11,7 @@ const RegisterContainer = () => {
     password: "",
     password2: ""
   });
-  const Selector = useSelector(state => state, []);
-  console.log(Selector);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated, []);
   const dispatch = useDispatch();
   const { name, email, password, password2 } = formData;
   const handleSubmit = async e => {
@@ -28,6 +27,7 @@ const RegisterContainer = () => {
   };
   return (
     <RegisterPresenter
+      isAuthenticated={isAuthenticated}
       {...formData}
       handleChange={handleChange}
       handleSubmit={handleSubmit}

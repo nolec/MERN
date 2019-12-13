@@ -45,17 +45,19 @@ const GridBox = styled.div`
   }
 `;
 const ItemContent = styled.div``;
-const Landing = () => (
-  <Main>
-    <Container>
-      <GridBox>
-        <Item>
-          <ItemContent></ItemContent>
-        </Item>
-      </GridBox>
-    </Container>
-  </Main>
-);
-Landing.propTypes = {};
+const HomePresenter = () => {
+  return (
+    <Main>
+      <Container>
+        <GridBox>
+          <Item>
+            <ItemContent></ItemContent>
+          </Item>
+        </GridBox>
+      </Container>
+    </Main>
+  );
+};
+HomePresenter.propTypes = {};
 
-export default Landing;
+export default HomePresenter;

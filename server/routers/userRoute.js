@@ -4,7 +4,7 @@ import { check } from "express-validator/check";
 import {
   register,
   postLogin,
-  getLogin,
+  authUser,
   deleteAll
 } from "../controllers/userController";
 
@@ -22,7 +22,7 @@ userRouter.post(
   register
 );
 
-userRouter.get("/login", auth, getLogin);
+userRouter.get("/login", auth, authUser);
 userRouter.post(
   "/login",
   [

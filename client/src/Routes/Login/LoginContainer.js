@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import LoginPresenter from "./LoginPresenter";
+import { login } from "../../actions/auth";
 
-const LoginContainer = () => {
+const LoginContainer = props => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
-  const Selector = useSelector(state => state, []);
-  console.log(Selector);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated, []);
+
+  const dispatch = useDispatch();
   const { email, password } = formData;
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log("로그인 성공");
+    dispatch(login(email, password));
+    props.history.push("/");
   };
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
     <LoginPresenter
+      isAuthenticated={isAuthenticated}
       {...formData}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
