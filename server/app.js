@@ -15,6 +15,7 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+console.log(process.env.NODE_ENV);
 //====================================================
 if (process.env.NODE_ENV === "production") {
   //Set static folder
