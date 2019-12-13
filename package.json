@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "v12.13.1",
+    "npm": "6.12.1"
+  },
   "scripts": {
     "frontend": "npm run start --prefix client",
     "backend": "nodemon --exec babel-node server/app.js",
